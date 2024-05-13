@@ -1,7 +1,8 @@
-import 'intro_classes.dart';
+import 'intro_async.dart';
 
 void main(List<String> arguments) 
 {
-	testMixin();
+	testAsyncIO();
 }
+
 

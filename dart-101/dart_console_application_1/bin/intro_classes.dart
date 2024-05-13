@@ -1,21 +1,20 @@
-class Spacecraft
-{
-  	String name;
+class Spacecraft {
+	String name;
 	DateTime? launchDate;
 
 	// Read-only non-final property
-  	int? get launchYear => launchDate?.year;
+	int? get launchYear => launchDate?.year;
 
 	// Constructor, with syntactic sugar for assignment to members.
-  	Spacecraft(this.name, this.launchDate)
+	Spacecraft(this.name, this.launchDate)
 	{
-    // Initialization code goes here.
-  	}
+		// Initialization code goes here.
+	}
 
 	// Named constructor that forwards to the default one.
-  	Spacecraft.unlaunched(String name) : this(name, null);
+	Spacecraft.unlaunched(String name) : this(name, null);
 
-	// Method.
+  // Method.
 	void describe() 
 	{
 		print('Spacecraft: $name');
@@ -33,7 +32,7 @@ class Spacecraft
 	}
 }
 
-void testClass()
+void testClass() 
 {
 	var voyager = Spacecraft('Voyager I', DateTime(1977, 9, 5));
 	voyager.describe();
@@ -42,41 +41,41 @@ void testClass()
 	voyager3.describe();
 }
 
-class Orbiter extends Spacecraft
+class Orbiter extends Spacecraft 
 {
 	double altitude;
 
 	//constructor for inherited class with extra parameters
 	Orbiter(super.name, DateTime super.launchDate, this.altitude);
 
-	void describe2()
+	void describe2() 
 	{
 		super.describe();
 		print('flying altitude at $altitude meters');
 	}
 }
 
-void testInheritance()
+void testInheritance() 
 {
-	var val = Orbiter('Voyager IV', DateTime(2014,4,18), 20000);
+	var val = Orbiter('Voyager IV', DateTime(2014, 4, 18), 20000);
 	val.describe2();
 }
 
 //Mixins are a way of reusing code in multiple class hierarchies. The following is a mixin declaration
-mixin Piloted
+mixin Piloted 
 {
 	int astronauts = 1;
 
-	void describeCrew(int crewNo)
+	void describeCrew(int crewNo) 
 	{
 		print('Number of astrobauts = $crewNo');
 	}
 }
 
-class PilotedCraft extends Spacecraft with Piloted
+class PilotedCraft extends Spacecraft with Piloted 
 {
 	PilotedCraft(super.name, super.launchDate, int crewCount);
-	
+
 	void getInfo()
 	{
 		describe();
@@ -84,8 +83,36 @@ class PilotedCraft extends Spacecraft with Piloted
 	}
 }
 
-void testMixin()
+void testMixin() 
 {
-	var val = PilotedCraft('Traveller I', DateTime(2023,7,24), 4);
+	var val = PilotedCraft('Traveller I', DateTime(2023, 7, 24), 4);
 	val.getInfo();
+}
+
+abstract class Describable 
+{
+	void describe();
+
+	void describeWithEmphasis() 
+	{
+		print('=========');
+		describe();
+		print('=========');
+	}
+}
+
+class DescribableEx extends Describable
+{
+	@override
+	void describe() 
+	{
+		print('violaAA!!');
+	}
+}
+
+void testAbstract()
+{
+	var val = DescribableEx();
+	val.describe();
+	val.describeWithEmphasis();
 }
