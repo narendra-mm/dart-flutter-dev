@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'intro_classes.dart';
 
 const oneSecond = Duration(seconds: 1);
 // ···
@@ -52,3 +53,37 @@ void testAsyncIO()
 	Iterable<String> fileNames = ['file1', 'file2', 'file3'];
 	createDescriptions(fileNames);
 }
+
+Stream<String> report(Spacecraft craft, Iterable<String> objects) async* 
+{
+	for (final object in objects) 
+	{
+		await Future.delayed(oneSecond);
+		yield '${craft.name} flies by $object';
+	}
+}
+
+void testAsyncStream()
+{
+
+	//local methods
+	void onStreamData(String message)
+	{
+		print(message);
+	}
+
+	void onStreamDone()
+	{
+		print('streaming text has been done');
+	}
+
+	Iterable<String> astroids = ['astroid1', 'astroid2', 'astroid3'];
+	Spacecraft val = Spacecraft('Voyager I', DateTime(2013,5,18));
+	var streamText = report(val, astroids);
+	//adding callbacks for better control on the stream events
+	streamText.listen(onStreamData, onDone: onStreamDone);
+
+	//simple way of printing stream
+	// report(val, astroids).listen(print);
+}
+
