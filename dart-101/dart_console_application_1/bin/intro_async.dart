@@ -79,11 +79,18 @@ void testAsyncStream()
 
 	Iterable<String> astroids = ['astroid1', 'astroid2', 'astroid3'];
 	Spacecraft val = Spacecraft('Voyager I', DateTime(2013,5,18));
-	var streamText = report(val, astroids);
-	//adding callbacks for better control on the stream events
-	streamText.listen(onStreamData, onDone: onStreamDone);
 
-	//simple way of printing stream
-	// report(val, astroids).listen(print);
+	var example = 1;
+	if(example == 1)
+	{
+		//adding callbacks for better control on the stream events
+		var streamText = report(val, astroids);
+		streamText.listen(onStreamData, onDone: onStreamDone);
+	}
+	else if(example == 2)
+	{
+		//simple way of printing stream
+		report(val, astroids).listen(print);
+	}	
 }
 
