@@ -1,8 +1,8 @@
-import 'intro_async.dart';
+import 'intro_exceptions.dart';
 
 void main(List<String> arguments) 
 {
-	testAsyncStream();
+	testTryCatch();
 }
 
 
