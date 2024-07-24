@@ -7,4 +7,9 @@ void main()
 	{
 		expect(calculate(), 42);
 	});
+
+	test('calculate 2', ()
+	{
+		expect(calculate(), 43);
+	});
 }
